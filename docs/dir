@@ -8,6 +8,7 @@ User Emacs packages
 * SLIME: (slime).            The Superior Lisp Mode for Emacs
 * EMMS: (emms).		     Emacs MultiMedia System
 * Magit: (magit).	     Git porcelain for Emacs
+* Evil: (evil).		     Emacs Vi emulation
 
 User documentation
 * Göktuğ's Config: (gk).     The Big Brother DataBase
@@ -15,5 +16,6 @@ User documentation
 Books
 * On Lisp: (onlisp).          Paul Graham's essay on Lisp
 * SICP: (sicp).               Structure and Implementation of Computer Programs
-* Debbugs: (debbugs).           A library for communication with Debbugs.
-* Debbugs UG: (debbugs-ug).     Debbugs User Interface in Emacs.
+* R5RS: (r5rs).               Revised(^5) Report on the Algorithmic Language Scheme
+* Debbugs: (debbugs).           A library for communication with Debbugs
+* Debbugs UG: (debbugs-ug).     Debbugs User Interface in Emacs
