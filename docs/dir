@@ -4,11 +4,12 @@ File: dir,	Node: Top
 * Menu:
 
 User Emacs packages
-* BBDB: (bbdb).		     The Big Brother DataBase
-* SLIME: (slime).            The Superior Lisp Mode for Emacs
-* EMMS: (emms).		     Emacs MultiMedia System
-* Magit: (magit).	     Git porcelain for Emacs
-* Evil: (evil).		     Emacs Vi emulation
+* BBDB: (bbdb).			  The Big Brother DataBase
+* SLIME: (slime).		  The Superior Lisp Mode for Emacs
+* EMMS: (emms).			  Emacs MultiMedia System
+* Magit: (magit).		  Git porcelain for Emacs
+* Evil: (evil).			  Emacs Vi emulation
+* Haskell mode: (haskell-mode).	  Haskell editing and evaluation
 
 User documentation
 * Göktuğ's Config: (gk).     The Big Brother DataBase
