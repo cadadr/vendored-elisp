@@ -11,9 +11,6 @@ User Emacs packages
 * Evil: (evil).			  Emacs Vi emulation
 * Haskell mode: (haskell-mode).	  Haskell editing and evaluation
 
-User documentation
-* Göktuğ's Config: (gk).     The Big Brother DataBase
-
 Books
 * On Lisp: (onlisp).          Paul Graham's essay on Lisp
 * SICP: (sicp).               Structure and Implementation of Computer Programs
