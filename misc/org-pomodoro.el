@@ -4,7 +4,7 @@
 ;; URL: https://github.com/lolownia/org-pomodoro
 ;; Created: May 10, 2013
 ;; Version: 2.1.0
-;; Package-Requires: ((alert "0.5.10") (cl-lib "0.5"))
+;; Package-Requires: ((cl-lib "0.5"))
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -41,7 +41,6 @@
 (require 'org-agenda)
 (require 'org-clock)
 (require 'org-timer)
-(require 'alert)
 
 ;;; Custom Variables
 
@@ -530,8 +529,8 @@ The argument STATE is optional.  The default state is `:pomodoro`."
   (org-agenda-maybe-redo))
 
 (defun org-pomodoro-notify (title message)
-  "Send a notification with TITLE and MESSAGE using `alert'."
-  (alert message :title title :category 'org-pomodoro))
+  "Send a notification with TITLE and MESSAGE."
+  (gk-send-desktop-notification title message))
 
 ;; Handlers for pomodoro events.
 
