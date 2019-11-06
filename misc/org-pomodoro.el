@@ -462,6 +462,7 @@ org-pomodoro-time-format."
 
 (defun org-pomodoro-kill ()
   "Kill the current timer, reset the phase and update the modeline."
+  (interactive)
   (org-pomodoro-killed))
 
 (defun org-pomodoro-tick ()
@@ -521,6 +522,7 @@ The argument STATE is optional.  The default state is `:pomodoro`."
 
 (defun org-pomodoro-reset ()
   "Reset the org-pomodoro state."
+  (interactive)
   (when org-pomodoro-timer
     (cancel-timer org-pomodoro-timer))
   (setq org-pomodoro-state :none
