@@ -10,6 +10,7 @@ User Emacs packages
 * Magit: (magit).		  Git porcelain for Emacs
 * Evil: (evil).			  Emacs Vi emulation
 * Haskell mode: (haskell-mode).	  Haskell editing and evaluation
+* ESS: (ess).                     Emacs Speaks Statistics
 
 Books
 * On Lisp: (onlisp).          Paul Graham's essay on Lisp
