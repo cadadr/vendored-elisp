@@ -95,12 +95,12 @@
   "Start GeoClue2 and wait for it to provide the location of the host."
   (geoclue-start)
   (let ((times 0))
-    (while (or (not geoclue--location)
-               (> times 5))
+    (while (and (not geoclue--location)
+               (<= times 5))
       (incf times)
       (sleep-for 0 250)))
   (or geoclue--location
-      (error "Unable to determine current location")))
+      (warn "Unable to determine current location")))
 
  ;; User-serviceable parts
 
