@@ -1,7 +1,7 @@
 ;;; bbdb-sc.el --- BBDB interface to Supercite
 
 ;; Copyright (C) 1991, 1992 Jamie Zawinski <jwz@netscape.com>.
-;; Copyright (C) 2010-2014 Roland Winkler <winkler@gnu.org>
+;; Copyright (C) 2010-2014, 2021 Roland Winkler <winkler@gnu.org>
 
 ;; This file is part of the Insidious Big Brother Database (aka BBDB),
 
@@ -74,7 +74,7 @@
   :group 'bbdb-utilities-sc
   :type '(symbol :tag "Field name"))
 (define-obsolete-variable-alias 'bbdb/sc-attribution-field
-  'bbdb-sc-attribution-field)
+  'bbdb-sc-attribution-field "3.0")
 
 (defcustom bbdb-sc-update-records-p 'search
   "How `bbdb-sc-set-attrib' updates BBDB records automatically.
@@ -103,6 +103,7 @@ Allowed values include
  "Last attribution used by Supercite.
 Used to compare against citation selected by the user.")
 
+(define-obsolete-function-alias 'bbdb/sc-consult-attr 'bbdb-sc-get-attrib "3.0")
 (defun bbdb-sc-get-attrib (mail)
   "Get the Supercite attribution from BBDB.
 MAIL is the mail address to look for in BBDB."
@@ -118,8 +119,8 @@ MAIL is the mail address to look for in BBDB."
       (sit-for 1))
     (if record
         (bbdb-record-field (car record) bbdb-sc-attribution-field))))
-(define-obsolete-function-alias 'bbdb/sc-consult-attr 'bbdb-sc-get-attrib)
 
+(define-obsolete-function-alias 'bbdb/sc-set-attr 'bbdb-sc-set-attrib "3.0")
 (defun bbdb-sc-set-attrib ()
   "Store attribution in BBDB."
   (let ((from (bbdb-extract-address-components (sc-mail-field "from")))
@@ -145,8 +146,8 @@ MAIL is the mail address to look for in BBDB."
                                          (bbdb-record-name record) attrib))))
           (bbdb-record-set-field record bbdb-sc-attribution-field attrib)
           (bbdb-change-record record))))))
-(define-obsolete-function-alias 'bbdb/sc-set-attr 'bbdb-sc-set-attrib)
 
+(define-obsolete-function-alias 'bbdb/sc-default 'bbdb-sc-update-from "3.0")
 ;;;###autoload
 (defun bbdb-sc-update-from ()
   "Update the \"from\" field in `sc-mail-info'.
@@ -167,7 +168,6 @@ complement the \"from\" field in `sc-mail-info' with the sender's name in BBDB."
     (if name
         (setcdr (assoc-string "from" sc-mail-info t)
                 (format "%s <%s>" name (cadr address))))))
-(define-obsolete-function-alias 'bbdb/sc-default 'bbdb-sc-update-from)
 
 ;; Insert our hooks
 
