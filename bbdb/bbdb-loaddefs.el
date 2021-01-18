@@ -434,7 +434,7 @@ as part of the MUA insinuation.
 
 \(fn &optional BEG CYCLE-COMPLETION-BUFFER)" t nil)
 
-(define-obsolete-function-alias 'bbdb-complete-name 'bbdb-complete-mail)
+(define-obsolete-function-alias 'bbdb-complete-name 'bbdb-complete-mail "idk (g@)")
 
 (autoload 'bbdb-mail-aliases "bbdb-com" "\
 Define mail aliases for the records in the database.

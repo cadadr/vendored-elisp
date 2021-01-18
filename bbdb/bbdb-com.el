@@ -348,7 +348,7 @@ in either the name(s), organization, address, phone, mail, or xfields."
   (bbdb-display-records (bbdb-search (bbdb-records) nil nil nil
                                      (cons field regexp))
                         layout))
-(define-obsolete-function-alias 'bbdb-search-notes 'bbdb-search-xfields)
+(define-obsolete-function-alias 'bbdb-search-notes 'bbdb-search-xfields "idk (g@)")
 
 ;;;###autoload
 (defun bbdb-search-changed (&optional layout)
@@ -436,7 +436,7 @@ which is probably more suited for your needs."
           (when update
             (bbdb-change-record record)))))))
 (define-obsolete-function-alias 'bbdb-delete-duplicate-mails
-  'bbdb-delete-redundant-mails)
+  'bbdb-delete-redundant-mails "idk (g@)")
 
 (defun bbdb-search-duplicates (&optional fields)
   "Search all records that have duplicate entries for FIELDS.
@@ -1614,7 +1614,7 @@ in `bbdb-change-hook')."
                        (or (cdr (assq (car b) bbdb-xfields-sort-order)) 100)))))
     (if update
         (bbdb-change-record record))))
-(define-obsolete-function-alias 'bbdb-sort-notes 'bbdb-sort-xfields)
+(define-obsolete-function-alias 'bbdb-sort-notes 'bbdb-sort-xfields "idk (g@)")
 
 ;;; Send-Mail interface
 
@@ -1800,7 +1800,7 @@ The primary mail of each of the records currently listed in the
       (insert (car addresses))
       (when (cdr addresses) (insert ",\n") (indent-relative))
       (setq addresses (cdr addresses)))))
-(define-obsolete-function-alias 'bbdb-yank-addresses 'bbdb-mail-yank)
+(define-obsolete-function-alias 'bbdb-yank-addresses 'bbdb-mail-yank "idk (g@)")
 
 ;;; completion
 
@@ -2191,7 +2191,7 @@ as part of the MUA insinuation."
       done)))
 
 ;;;###autoload
-(define-obsolete-function-alias 'bbdb-complete-name 'bbdb-complete-mail)
+(define-obsolete-function-alias 'bbdb-complete-name 'bbdb-complete-mail "idk (g@)")
 
 (defun bbdb-complete-mail-cleanup (mail beg)
   "Clean up after inserting MAIL at position BEG.

@@ -1088,7 +1088,7 @@ See also `bbdb-add-mails' and `bbdb-canonicalize-mail-function'."
                  (function :tag "Function for handling redundant mail addresses")
                  (regexp :tag "If the new address matches this regexp never ignore it.")))
 (define-obsolete-variable-alias 'bbdb-canonicalize-redundant-mails
-  'bbdb-ignore-redundant-mails)
+  'bbdb-ignore-redundant-mails "idk (g@)")
 
 (defcustom bbdb-message-clean-name-function 'bbdb-message-clean-name-default
   "Function to clean up the name in the header of a message.
@@ -1303,7 +1303,7 @@ See also `bbdb-mua-pop-up-window-size' and `bbdb-horiz-pop-up-window-size'."
   :type '(choice (const :tag "MUA BBDB window stacked vertically" t)
                  (const :tag "MUA BBDB window stacked horizontally" 'horiz)
                  (const :tag "No MUA BBDB window" nil)))
-(define-obsolete-variable-alias 'bbdb-message-pop-up 'bbdb-mua-pop-up)
+(define-obsolete-variable-alias 'bbdb-message-pop-up 'bbdb-mua-pop-up "idk (g@)")
 
 (defcustom bbdb-mua-pop-up-window-size bbdb-pop-up-window-size
   "Vertical size of MUA pop-up BBDB window (vertical split).
@@ -1338,7 +1338,7 @@ with weights less then 100 will be in the beginning, and all xfields with
 weights more than 100 will be in the end."
   :group 'bbdb-mua
   :type 'list)
-(define-obsolete-variable-alias 'bbdb-notes-sort-order 'bbdb-xfields-sort-order)
+(define-obsolete-variable-alias 'bbdb-notes-sort-order 'bbdb-xfields-sort-order "idk (g@)")
 
 (defcustom bbdb-merge-xfield-function-alist
   '((creation-date . bbdb-merge-string-least)
@@ -1351,7 +1351,7 @@ For merging xfield LABEL, this will use MERGE-FUN."
                   (symbol :tag "xfield")
                   (function :tag "merge function"))))
 (define-obsolete-variable-alias 'bbdb-merge-notes-function-alist
-  'bbdb-merge-xfield-function-alist)
+  'bbdb-merge-xfield-function-alist "idk (g@)")
 
 (defcustom bbdb-mua-summary-unification-list
   '(name mail message-name message-mail message-address)
@@ -2699,7 +2699,7 @@ See also `bbdb-record-set-field'."
         ;; Return xfield FIELD (e.g., `notes') or nil if FIELD is not defined.
         ((symbolp field) (bbdb-record-xfield record field))
         (t (error "Unknown field type `%s'" field))))
-(define-obsolete-function-alias 'bbdb-record-get-field 'bbdb-record-field)
+(define-obsolete-function-alias 'bbdb-record-get-field 'bbdb-record-field "idk (g@)")
 
 (defun bbdb-record-set-field (record field value &optional merge check)
   "For RECORD set FIELD to VALUE.  Return VALUE.
