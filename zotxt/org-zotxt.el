@@ -176,12 +176,13 @@ DESC is the description of the link, if any
 FORMAT is the export format, a symbol like ‘html’ or ‘latex’ or ‘ascii’."
   (if (string-match "^@\\(.*\\)$" desc)
       (pcase format
-        (`latex (format "\\cite{%s}"
+        (`latex (format "\\fullcite{%s} [citekey: %s]"
                         ;; hack to replace all the escaping that latex
                         ;; gives us in the desc with _
                         (replace-regexp-in-string
                          "\\([{}]\\|\\\\text\\|\\\\(\\|\\\\)\\)" ""
-                         (match-string 1 desc))))
+                         (match-string 1 desc))
+                        desc))
         (`md desc)
         (_ nil))))
 
