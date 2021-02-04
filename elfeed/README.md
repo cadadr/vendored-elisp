@@ -17,6 +17,13 @@ For a longer overview,
    [30](https://www.youtube.com/watch?v=tjnK1rkO7RU),
    [31](https://www.youtube.com/watch?v=5zuSUbAHH8c)
  * [Take Elfeed everywhere: Mobile rss reading Emacs-style (for free/cheap)](http://babbagefiles.blogspot.com/2017/03/take-elfeed-everywhere-mobile-rss.html)
+ * [Elfeed Rules!](https://noonker.github.io/posts/2020-04-22-elfeed/) ([reddit](https://old.reddit.com/r/emacs/comments/g6oowz/elfeed_rules/))
+ * [Elfeed with Tiny Tiny RSS](https://codingquark.com/emacs/2020/04/19/elfeed-protocol-ttrss.html) ([hn](https://news.ycombinator.com/item?id=22915200))
+ * [Open Emacs elfeed links in the background](http://xenodium.com/open-emacs-elfeed-links-in-background/)
+ * [Using Emacs 72](https://cestlaz.github.io/post/using-emacs-72-customizing-elfeed/)
+ * [Lazy Elfeed](https://karthinks.com/blog/lazy-elfeed/)
+ * [Using Elfeed to View Videos](https://joshrollinswrites.com/help-desk-head-desk/20200611/)
+ * [Manage podcasts in Emacs with Elfeed and Bongo](https://protesilaos.com/codelog/2020-09-11-emacs-elfeed-bongo/)
  * [... more ...](http://nullprogram.com/tags/elfeed/)
  * [... and more ...](http://pragmaticemacs.com/category/elfeed/)
 
@@ -42,8 +49,11 @@ These projects extend Elfeed with additional features:
 
 * [elfeed-org](https://github.com/remyhonig/elfeed-org)
 * [elfeed-goodies](https://github.com/algernon/elfeed-goodies)
+* [elfeed-protocol](https://github.com/fasheng/elfeed-protocol)
+* [elfeed-score](https://github.com/sp1ff/elfeed-score)
 * [Elfeed Android interface](https://github.com/areina/elfeed-cljsrn)
   ([Google Play](https://play.google.com/store/apps/details?id=com.elfeedcljsrn))
+* [elfeed-dashboard](https://github.com/Manoj321/elfeed-dashboard)
 
 ## Getting Started
 
@@ -162,7 +172,11 @@ to limit the display to 20 entries: `#20`.
 
 A component beginning with a `=` is a regular expression matching the
 entry's feed (title or URL). Only entries belonging to a feed that
-match at least one of the `=` expressions will be shown.
+matches at least one of the `=` expressions will be shown.
+
+A component beginning with a `~` is a regular expression matching the
+entry's feed (title or URL). Only entries belonging to a feed that
+matches none of the `~` expressions will be shown.
 
 All other components are treated as a regular expression, and only
 entries matching it (title or URL) will be shown.

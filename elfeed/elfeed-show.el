@@ -9,6 +9,8 @@
 (require 'url-parse)
 (require 'browse-url)
 (require 'message) ; faces
+(require 'bookmark)
+(bookmark-maybe-load-default-file)
 
 (require 'elfeed)
 (require 'elfeed-db)
@@ -28,15 +30,20 @@
 (defvar elfeed-show-entry nil
   "The entry being displayed in this buffer.")
 
-(defvar elfeed-show-entry-switch #'switch-to-buffer
-  "Function to call to display and switch to the feed entry buffer.
-Defaults to `switch-to-buffer'.")
+(defcustom elfeed-show-entry-switch #'switch-to-buffer
+  "Function used to display the feed entry buffer."
+  :group 'elfeed
+  :type '(choice (function-item switch-to-buffer)
+                 (function-item pop-to-buffer)
+                 function))
 
-(defvar elfeed-show-entry-delete #'elfeed-kill-buffer
-  "Function called when quitting from the elfeed-entry
-buffer. Does not take any arguments.
-
-Defaults to `elfeed-kill-buffer'.")
+(defcustom elfeed-show-entry-delete #'elfeed-kill-buffer
+  "Function called when quitting from the elfeed-entry buffer.
+Called without arguments."
+  :group 'elfeed
+  :type '(choice (function-item elfeed-kill-buffer)
+                 (function-item delete-window)
+                 function))
 
 (defvar elfeed-show-refresh-function #'elfeed-show-refresh--mail-style
   "Function called to refresh the `*elfeed-entry*' buffer.")
@@ -64,6 +71,7 @@ Defaults to `elfeed-kill-buffer'.")
       (define-key map (kbd "TAB") #'elfeed-show-next-link)
       (define-key map "\e\t" #'shr-previous-link)
       (define-key map [backtab] #'shr-previous-link)
+      (define-key map "c" #'elfeed-kill-link-url-at-point)
       (define-key map [mouse-2] #'shr-browse-url)
       (define-key map "A" #'elfeed-show-add-enclosure-to-playlist)
       (define-key map "P" #'elfeed-show-play-enclosure)))
@@ -80,6 +88,8 @@ Defaults to `elfeed-kill-buffer'.")
         buffer-read-only t)
   (buffer-disable-undo)
   (make-local-variable 'elfeed-show-entry)
+  (set (make-local-variable 'bookmark-make-record-function)
+       #'elfeed-show-bookmark-make-record)
   (run-mode-hooks 'elfeed-show-mode-hook))
 
 (defalias 'elfeed-show-tag--unread
@@ -118,9 +128,8 @@ Defaults to `elfeed-kill-buffer'.")
 
 (defun elfeed--show-format-author (author)
   "Format author plist for the header."
-  (let ((name (plist-get author :name))
-        (uri (plist-get author :uri))
-        (email (plist-get author :email)))
+  (cl-destructuring-bind (&key name uri email &allow-other-keys)
+      author
     (cond ((and name uri email)
            (format "%s <%s> (%s)" name email uri))
           ((and name email)
@@ -214,6 +223,7 @@ The result depends on the value of `elfeed-show-unique-buffers'."
   (interactive)
   (funcall elfeed-show-entry-delete)
   (with-current-buffer (elfeed-search-buffer)
+    (when elfeed-search-remain-on-entry (forward-line 1))
     (call-interactively #'elfeed-search-show-entry)))
 
 (defun elfeed-show-prev ()
@@ -221,6 +231,7 @@ The result depends on the value of `elfeed-show-unique-buffers'."
   (interactive)
   (funcall elfeed-show-entry-delete)
   (with-current-buffer (elfeed-search-buffer)
+    (when elfeed-search-remain-on-entry (forward-line 1))
     (forward-line -2)
     (call-interactively #'elfeed-search-show-entry)))
 
@@ -452,6 +463,37 @@ Prompts for ENCLOSURE-INDEX when called interactively."
     (when (memq 'message-header-name properties)
       (forward-paragraph))
     (shr-next-link)))
+
+(defun elfeed-kill-link-url-at-point ()
+  "Get link URL at point and store in kill-ring."
+  (interactive)
+  (let ((url (or (elfeed-get-link-at-point)
+                 (elfeed-get-url-at-point))))
+    (if url
+        (progn (kill-new url) (message url))
+      (call-interactively 'shr-copy-url))))
+
+;; Bookmarks
+
+;;;###autoload
+(defun elfeed-show-bookmark-handler (record)
+  "Show the bookmarked entry saved in the `RECORD'."
+  (let* ((id (bookmark-prop-get record 'id))
+         (entry (elfeed-db-get-entry id))
+         (position (bookmark-get-position record)))
+    (elfeed-show-entry entry)
+    (goto-char position)))
+
+(defun elfeed-show-bookmark-make-record ()
+  "Save the current position and the entry into a bookmark."
+  (let ((id (elfeed-entry-id elfeed-show-entry))
+        (position (point))
+        (title (elfeed-entry-title elfeed-show-entry)))
+    `(,(format "elfeed entry \"%s\"" title)
+      (id . ,id)
+      (location . ,title)
+      (position . ,position)
+      (handler . elfeed-show-bookmark-handler))))
 
 (provide 'elfeed-show)
 
