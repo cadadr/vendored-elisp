@@ -12,6 +12,9 @@ User Emacs packages
 * Haskell mode: (haskell-mode).	  Haskell editing and evaluation
 * ESS: (ess).                     Emacs Speaks Statistics
 * Elpher: (elpher).               Browser for gopher, gemini and finger
+* AUCTeX: (auctex).             A sophisticated TeX environment for Emacs.
+* preview-latex: (preview-latex).
+                                Preview LaTeX fragments in Emacs
 
 Books
 * On Lisp: (onlisp).          Paul Graham's essay on Lisp
