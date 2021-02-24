@@ -15,6 +15,7 @@ User Emacs packages
 * AUCTeX: (auctex).             A sophisticated TeX environment for Emacs.
 * preview-latex: (preview-latex).
                                 Preview LaTeX fragments in Emacs
+* Ebib: (ebib).           A BibTeX database manager.
 
 Books
 * On Lisp: (onlisp).          Paul Graham's essay on Lisp
