@@ -2822,8 +2822,8 @@ file to choose."
                 (message "Executing `%s %s'" viewer file-full-path)
                 (start-process (concat "ebib " ext " viewer process") nil viewer file-full-path))
             (message "Opening `%s'" file-full-path)
-            (ebib-lower)
-            (find-file file-full-path)))
+            (display-buffer-pop-up-frame (find-file-noselect file-full-path)
+                                         nil)))
       (error "[Ebib] File not found: `%s'" (funcall ebib-file-name-mod-function file nil)))))
 
 (defun ebib-set-dialect (dialect)
