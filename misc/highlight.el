@@ -1008,6 +1008,7 @@
 ;;; Code:
 
 (require 'easymenu) ;; easy-menu-add-item
+(require 'facemenu)
 (require 'frame-fns nil t) ;; (no error if not found): flash-ding
 (require 'menu-bar+ nil t) ;; (no error if not found): menu-bar-edit-region-menu
 (when (> emacs-major-version 21) (require 'font-lock+ nil t)) ;; (no error if not found)
